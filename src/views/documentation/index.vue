@@ -1,182 +1,57 @@
 <template>
-  <div >
-    <h1 style="color: red;">Button</h1>
-
-    <!-- Elemen dengan tampilan warna orange -->
-    <el-button class="orange-button">Orange Button</el-button>
-
-    <!-- Elemen dengan tampilan warna black -->
-    <el-button type="primary" class="black-element">Black Button</el-button>
-
-    <h1>Tabel</h1>
-
-    <el-table :data="tableData"  style="width: 100%" :row-class-name="tableRowClassName" >
-      <el-table-column fixed prop="date" label="Date" width="150">
-      </el-table-column>
-      <el-table-column prop="name" label="Name" width="120" > </el-table-column>
-      <el-table-column prop="state" label="State" width="120">
-      </el-table-column>
-      <el-table-column prop="city" label="City" width="120"> </el-table-column>
-      <el-table-column prop="address" label="Address" width="120">
-      </el-table-column>
-      <el-table-column prop="zip" label="Zip" width="120"> </el-table-column>
-
-      <el-table-column prop="zip" label="Zip" width="120"> </el-table-column>
-
-      <el-table-column prop="zip" label="Zip" width="120"> </el-table-column>
-
-      <el-table-column prop="zip" label="Zip" width="120"> </el-table-column>
-
-      <el-table-column prop="zip" label="Zip" width="120"> </el-table-column>
-
-      <el-table-column prop="zip" label="Zip" width="120"> </el-table-column>
-      
-      <el-table-column prop="zip" label="Zip" width="120"> </el-table-column>
-
-      <el-table-column fixed="right" label="Operations" width="120">
-        <template slot-scope="scope">
-          <el-button type="primary" icon="el-icon-edit" circle></el-button>
-          <el-button
-            @click.native.prevent="deleteRow(scope.$index, tableData)"
-            type="danger"
-            icon="el-icon-delete"
-            circle
-            size="small"
-          >
-          </el-button>
-        </template>
-      </el-table-column>
-    </el-table>
+  <div class="app-container documentation-container">
+    <a class="document-btn" target="_blank" href="https://store.akveo.com/products/vue-java-admin-dashboard-spring?utm_campaign=akveo_store-Vue-Vue_demo%2Fgithub&utm_source=vue_admin&utm_medium=referral&utm_content=demo_English_button">Java backend integration</a>
+    <a class="document-btn" target="_blank" href="https://panjiachen.github.io/vue-element-admin-site/">Documentation</a>
+    <a class="document-btn" target="_blank" href="https://github.com/PanJiaChen/vue-element-admin/">Github Repository</a>
+    <a class="document-btn" target="_blank" href="https://panjiachen.gitee.io/vue-element-admin-site/zh/">国内文档</a>
+    <dropdown-menu class="document-btn" :items="articleList" title="系列文章" />
+    <a class="document-btn" target="_blank" href="https://panjiachen.github.io/vue-element-admin-site/zh/job/">内推招聘</a>
   </div>
 </template>
 
 <script>
-import $ from "jquery";
-import "datatables.net";
+import DropdownMenu from '@/components/Share/DropdownMenu'
 
 export default {
-  name: "Documentation",
-  methods: {
-    deleteRow(index, rows) {
-      rows.splice(index, 1);
-    },
-    tableRowClassName({row, rowIndex}) {
-        if (rowIndex === 1) {
-          return 'warning-row';
-        } else if (rowIndex === 3) {
-          return 'success-row';
-        }
-        return '';
-      }
-  },
+  name: 'Documentation',
+  components: { DropdownMenu },
   data() {
     return {
-      tableData: [
-        {
-          date: "2016-05-03",
-          name: "Tom",
-          state: "California",
-          city: "Los Angeles",
-          address: "No. 189, Grove St, Los Angeles",
-          zip: "CA 90036",
-        },
-        {
-          date: "2016-05-02",
-          name: "Tom",
-          state: "California",
-          city: "Los Angeles",
-          address: "No. 189, Grove St, Los Angeles",
-          zip: "CA 90036",
-        },
-        {
-          date: "2016-05-04",
-          name: "Tom",
-          state: "California",
-          city: "Los Angeles",
-          address: "No. 189, Grove St, Los Angeles",
-          zip: "CA 90036",
-        },
-        {
-          date: "2016-05-01",
-          name: "Tom",
-          state: "California",
-          city: "Los Angeles",
-          address: "No. 189, Grove St, Los Angeles",
-          zip: "CA 90036",
-        },
-        {
-          date: "2016-05-08",
-          name: "Tom",
-          state: "California",
-          city: "Los Angeles",
-          address: "No. 189, Grove St, Los Angeles",
-          zip: "CA 90036",
-        },
-        {
-          date: "2016-05-06",
-          name: "Tom",
-          state: "California",
-          city: "Los Angeles",
-          address: "No. 189, Grove St, Los Angeles",
-          zip: "CA 90036",
-        },
-        {
-          date: "2016-05-07",
-          name: "Tom",
-          state: "California",
-          city: "Los Angeles",
-          address: "No. 189, Grove St, Los Angeles",
-          zip: "CA 90036",
-        },
-      ],
-    };
-  },
-  mounted() {
-    $(this.$el).DataTable();
-  },
-};
+      articleList: [
+        { title: '基础篇', href: 'https://juejin.im/post/59097cd7a22b9d0065fb61d2' },
+        { title: '登录权限篇', href: 'https://juejin.im/post/591aa14f570c35006961acac' },
+        { title: '实战篇', href: 'https://juejin.im/post/593121aa0ce4630057f70d35' },
+        { title: 'vue-admin-template 篇', href: 'https://juejin.im/post/595b4d776fb9a06bbe7dba56' },
+        { title: 'v4.0 篇', href: 'https://juejin.im/post/5c92ff94f265da6128275a85' },
+        { title: '自行封装 component', href: 'https://segmentfault.com/a/1190000009090836' },
+        { title: '优雅的使用 icon', href: 'https://juejin.im/post/59bb864b5188257e7a427c09' },
+        { title: 'webpack4（上）', href: 'https://juejin.im/post/59bb864b5188257e7a427c09' },
+        { title: 'webpack4（下）', href: 'https://juejin.im/post/5b5d6d6f6fb9a04fea58aabc' }
+      ]
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>
-  .el-table .warning-row  {
-    background: yellow !important;
-  }
-  .el-table .success-row {
-    background: #f0f9eb;
-  }
 .documentation-container {
   margin: 50px;
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
 
-  .el-table__body-wrapper {
-    overflow: auto;
-    max-height: 250px;
-  }
-
-  .el-table__body-wrapper::-webkit-scrollbar {
-    width: 8px;
-  }
-  .el-button .orange-button {
-    background-color: #fbae17 !important;
-    color: red !important;
-  }
-
-  .black-element {
-    background-color: #4e4e4e;
+  .document-btn {
+    flex-shrink: 0;
+    display: block;
+    cursor: pointer;
+    background: black;
     color: white;
-  }
-  .el-table__body-wrapper::-webkit-scrollbar-track {
-    background: #f1f1f1;
-  }
-
-  .el-table__body-wrapper::-webkit-scrollbar-thumb {
-    background: #888;
-  }
-
-  .el-table__body-wrapper::-webkit-scrollbar-thumb:hover {
-    background: #555;
+    height: 60px;
+    padding: 0 16px;
+    margin: 16px;
+    line-height: 60px;
+    font-size: 20px;
+    text-align: center;
   }
 }
 </style>
